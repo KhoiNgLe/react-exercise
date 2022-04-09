@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Title from "./components/Title";
+import Modal from "./components/Modal";
 
 function App() {
   const [showEvents, setShowEvents] = useState(true);
@@ -18,11 +19,11 @@ function App() {
     });
   };
 
-  console.log(showEvents);
+  const subtitle = "All the latest events in Marioland";
 
   return (
     <div className="App">
-      <Title />
+      <Title title="Event in your area" subtitle={subtitle} />
 
       {/* If showEvents is true will run the right side */}
       {showEvents && (
@@ -58,6 +59,10 @@ function App() {
             <button onClick={() => handleClick(event.id)}>Delete event</button>
           </div>
         ))}
+      <Modal>
+        <h2>10% Off Coupon Code !</h2>
+        <p>Use the code NINJA10 at the checkout.</p>
+      </Modal>
     </div>
   );
 }
