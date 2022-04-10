@@ -4,6 +4,7 @@ import Title from "./components/Title";
 import Modal from "./components/Modal";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "mario's birthday bash", id: 1 },
@@ -18,8 +19,18 @@ function App() {
       });
     });
   };
+  //Close modal
+  const handleClose = () => {
+    setShowModal(false);
+  };
 
-  const subtitle = "All the latest events in Marioland";
+  //Show modal
+  const handleOpen = () => {
+    setShowModal(true);
+  };
+
+  console.log(showModal);
+  const subtitle = "Hello Mario";
 
   return (
     <div className="App">
@@ -59,10 +70,13 @@ function App() {
             <button onClick={() => handleClick(event.id)}>Delete event</button>
           </div>
         ))}
-      <Modal>
-        <h2>10% Off Coupon Code !</h2>
-        <p>Use the code NINJA10 at the checkout.</p>
-      </Modal>
+      {showModal && (
+        <Modal handleClose={handleClose}>
+          <h2>10% Off Coupon Code !</h2>
+          <p>Use the code NINJA10 at the checkout.</p>
+        </Modal>
+      )}
+      <button onClick={()=>setShowModal(true)}>Show Modal</button>
     </div>
   );
 }
