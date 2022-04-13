@@ -2,6 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import Title from "./components/Title";
 import Modal from "./components/Modal";
+import EventList from "./components/EventList";
+import NewEventForm from "./components/NewEventForm";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -22,11 +24,6 @@ function App() {
   //Close modal
   const handleClose = () => {
     setShowModal(false);
-  };
-
-  //Show modal
-  const handleOpen = () => {
-    setShowModal(true);
   };
 
   console.log(showModal);
@@ -61,22 +58,14 @@ function App() {
         </div>
       )}
       {/* Map thru event and output. If showEvents is true will run the right side  */}
-      {showEvents &&
-        events.map((event, index) => (
-          <div key={event.id}>
-            <h2>
-              {index}. {event.title}
-            </h2>
-            <button onClick={() => handleClick(event.id)}>Delete event</button>
-          </div>
-        ))}
+      {showEvents && <EventList events ={events} handleClick = {handleClick}/>}
       {showModal && (
-        <Modal handleClose={handleClose}>
-          <h2>10% Off Coupon Code !</h2>
-          <p>Use the code NINJA10 at the checkout.</p>
+        <Modal handleClose={handleClose} isSalesModal = {true}>
+          <NewEventForm/>
         </Modal>
       )}
-      <button onClick={()=>setShowModal(true)}>Show Modal</button>
+      {/* Button to show model  */}
+      <button onClick={() => setShowModal(true)}>Add New Event</button>
     </div>
   );
 }
