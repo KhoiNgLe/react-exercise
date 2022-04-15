@@ -25,7 +25,9 @@ function App() {
       });
     });
   };
+  
 
+  console.log(showModal);
   const subtitle = "Hello Mario";
 
   return (
