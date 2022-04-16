@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./NewEventForm.css";
 const NewEventForm = ({ addEvent }) => {
   const [title, setTitle] = useState("");
